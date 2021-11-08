@@ -1,0 +1,53 @@
+PUBLISHER TABLE
+
+create table publisher(name varchar(20),address varchar(50),phone integer(20),primary key(name));
+
+insert into publisher values("PEARSON","BANGALORE",897188380);
+insert into publisher values("MCGRAW","NEW_DELHI",897188381);
+insert into publisher values("SAPNA","MANGALORE",897188382);
+insert into publisher values("OXFORD","NEW_DELHI",897188383);
+
+BOOK TABLE
+
+create table book(book_id integer(10),title varchar(20),publisher_name varchar(20),pub_year integer(10),primary key(book_id),foreign key(publisher_name) references publisher(name) on delete cascade);
+
+insert into book values(100,"DBMS","PEARSON",2005);
+insert into book values(101,"SE","MCGRAW",2004);
+insert into book values(102,"CO","SAPNA",2010);
+insert into book values(103,"DMS","OXFORD",2010);
+
+LIBRARY PROGRAMME TABLE
+
+create table library_programme(programme_id integer(10),programme_name varchar(20),primary key(programme_id));
+
+insert into library_programme values(10,"P1","BANGALORE");
+insert into library_programme values(11,"P2","MANGALORE");
+insert into library_programme values(12,"P3","NEW_DELHI");
+insert into library_programme values(13,"P4","CHENNAI");
+
+BOOK AUTHORS TABLE
+
+create table book_authors(book_id integer(10),author_name varchar(20),primary key(book_id),foreign key(book_id) references book(book_id) on delete cascade);
+
+insert into book_authors values(100,"A1");
+ insert into book_authors values(101,"A2");
+insert into book_authors values(102,"A3");
+insert into book_authors values(103,"A4");
+
+BOOK COPIES
+
+ create table book_copies(book_id integer(10),programme_id integer(10),no_of_copies integer(10),primary key(book_id,programme_id),foreign key(book_id) references book(book_id) on delete cascade,foreign key(programme_id) references library_programme(programme_id) on delete cascade);
+
+insert into book_copies values(100,10,550);
+ insert into book_copies values(101,11,650);
+insert into book_copies values(102,12,750);
+insert into book_copies values(103,13,850);
+
+BOOK LENDING
+
+create table book_lending(book_id integer(10),programme_id integer(10),card_no integer(10),date_out date,due_date date,primary key(book_id,programme_id,card_no),foreign key(book_id) references book(book_id) on delete cascade,foreign key(programme_id) references library_programme(programme_id) on delete cascade);
+
+insert into book_lending values(100,10,1,"2018-01-10","2018-01-17");
+insert into book_lending values(101,11,2,"2018-02-11","2018-02-18");
+insert into book_lending values(102,12,3,"2018-03-05","2018-03-12");
+insert into book_lending values(103,13,4,"2018-04-01","2018-04-08");
