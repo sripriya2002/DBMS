@@ -1,1 +1,26 @@
+#to display book table and book author table
 select *from book,book_authors where book.book_id=book_authors.book_id;
+
+#to retrieve details of all books in library:id,publisher name,author names etc
+select *from book,book_authors,book_copies where book.book_id=book_authors.book_id and book_authors.book_id=book_copies.book_id;
+
+#to count number of books or no of rows
+select count(*) from book;
+
+#to count no of rows or no of borrowed copies in this case
+select count(*) from book_lending;
+
+#to insert values into book lending
+insert into book_lending values(102,12,1,"2017-01-20","2017-06-20");
+insert into book_lending values(103,13,1,"2017-01-20","2017-06-20");
+insert into book_lending values(101,11,1,"2017-01-20","2017-06-20");
+insert into book_lending values(102,13,1,"2017-01-20","2017-06-20");
+
+#to find the number of books borrowed based on card number
+select count(*) from book_lending group by card_no;
+
+#to find who borrowed more then 3 books based on card no
+select count(*) from book_lending group by card_no having count(*)>3;
+
+#to find who borrowed more thean 3 copies on the basis of card no and given the constraint of date
+select card_no,count(*) from book_lending where date_out>"2016-12-31" and due_date<"2017-07-01" group by card_no having count(*)>3;
