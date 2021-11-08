@@ -1,3 +1,5 @@
+DATE:08/11/21
+
 #to display book table and book author table
 select *from book,book_authors where book.book_id=book_authors.book_id;
 
