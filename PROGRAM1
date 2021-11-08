@@ -1,3 +1,5 @@
+DATE:25/10/2021
+
 PUBLISHER TABLE
 
 create table publisher(name varchar(20),address varchar(50),phone integer(20),primary key(name));
