@@ -26,3 +26,6 @@ select count(*) from book_lending group by card_no having count(*)>3;
 
 #to find who borrowed more thean 3 copies on the basis of card no and given the constraint of date
 select card_no,count(*) from book_lending where date_out>"2016-12-31" and due_date<"2017-07-01" group by card_no having count(*)>3;
+
+#to delete bookid 103 
+delete from book where book_id=103;
