@@ -29,4 +29,6 @@ insert into ORDERS values(555,2000,"2020-06-03",2000,10);
 --------------------------------------------------------------------------
 queries
 -------------------------------------------------------------------------
-select count(customer_id) from CUSTOMER where grade>(select avg(grade) from CUSTOMER where city="BANGALORE");
+q1)select count(customer_id) from CUSTOMER where grade>(select avg(grade) from CUSTOMER where city="BANGALORE");
+q2)select name,SALESMAN.salesman_id,count(*) from SALESMAN,CUSTOMER where SALESMAN.salesman_id having count(*)>1;
+q3)select SALESMAN.salesman_id from SALESMAN where exists(select *from CUSTOMER.salesman_id=SALESMAN.SALESMAN_ID and CUSTOMER.city=SALESMAN.city) union select SALESMAN.salesman_id from SALESMAN where  not exists(select *from CUSTOMER.salesman_id=SALESMAN.SALESMAN_ID and CUSTOMER.city=SALESMAN.city);
