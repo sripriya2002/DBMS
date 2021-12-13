@@ -29,3 +29,5 @@ select card_no,count(*) from book_lending where date_out>"2016-12-31" and due_da
 
 #to delete bookid 103 
 delete from book where book_id=103;
+
+
