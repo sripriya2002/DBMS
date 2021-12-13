@@ -1,0 +1,32 @@
+salesman
+----------------------------------------------------------------------------------------------------
+create table SALESMAN(salesman_id integer(10),name varchar(20),city varchar(20),commission integer(10),primary key(salesman_id));
+insert into SALESMAN values(10,"Akash","Mangalore",2);
+insert into SALESMAN values(20,"Ram","Bangalore",10);
+insert into SALESMAN values(30,"Raj","Mangalore",5);
+insert into SALESMAN values(40,"Kiran","Mysore",15);
+insert into SALESMAN values(50,"Shreya","Bangalore",3);
+-----------------------------------------------------------------------------------
+customer
+---------------------------------------------------------------------------------
+create table CUSTOMER(customer_id integer(10),cust_name varchar(20),city varchar(20),grade integer(10),salesman_id integer(10),primary key(customer_id),foreign key(salesman_id) references SALESMAN(salesman_id) on delete cascade on update cascade);
+
+insert into CUSTOMER values(1000,"Avinash","Bangalore",400,10); 
+insert into CUSTOMER values(2000,"Kumar","Udupi",200,20); 
+insert into CUSTOMER values(3000,"Prithi","Mysore",300,40); 
+insert into CUSTOMER values(4000,"Smitha","Bangalore",300,30); 
+insert into CUSTOMER values(5000,"Varshini","Mysore",400,50); 
+-----------------------------------------------------------------------------
+orders
+---------------------------------------------------------------------------
+create table ORDERS(ord_no integer(10),Purchase_amt integer(10),ord_date date,customer_id integer(10),salesman_id integer(10),primary key(ord_no),foreign key(customer_id) references CUSTOMER(customer_id),foreign key(salesman_id) references SALESMAN(salesman_id) on delete cascade on update cascade);
+
+insert into ORDERS values(551,5000,"2020-01-04",1000,10);
+insert into ORDERS values(552,2500,"2020-02-07",2000,20);
+insert into ORDERS values(553,500,"2020-03-03",3000,40);
+insert into ORDERS values(554,1500,"2020-04-02",4000,30);
+insert into ORDERS values(555,2000,"2020-06-03",2000,10);
+--------------------------------------------------------------------------
+queries
+-------------------------------------------------------------------------
+select count(customer_id) from CUSTOMER where grade>(select avg(grade) from CUSTOMER where city="BANGALORE");
